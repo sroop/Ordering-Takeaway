@@ -1,6 +1,10 @@
 class Person
 
-	def menu
+	def initialize(my_order = {})
+		my_order = @my_order
+	end
+
+	def view_menu
 		@menu = { "Salmon Sashimi" => 10, 
 			"Tuna Sashimi" => 7,
 			"Yellow Tail Sashimi" => 6,
@@ -8,9 +12,13 @@ class Person
 	end
 
 	def order(dish, quantity)
-		my_order = {}
-		my_order[dish] = quantity
-		my_order
+		@my_order = {}
+		@my_order[dish] = quantity
+		@my_order
+	end
+
+	def view_order
+		@my_order
 	end
 
 end

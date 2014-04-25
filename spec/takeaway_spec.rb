@@ -3,6 +3,7 @@ require 'takeaway'
 describe 'Takeaway' do
 	
 	let(:takeaway) { Takeaway.new }
+	let(:person) { double :person, view_order: {"Salmon Sashimi" => 1} }
 
 	context 'The Menu:' do
 
@@ -17,25 +18,22 @@ describe 'Takeaway' do
 
 	end
 
-	context 'The Receipt:' do
+	context 'The Order:' do
 
-		it ' an order' do
-			expect(takeaway.receive_order).to eq({"Salmon Sashimi"=>10, "Tuna Sashimi"=>7, "Mackerel Sashimi"=>8})
+		it 'is received' do
+			takeaway.receive_order(person)
+			expect(takeaway.receive_order(person)).to eq({"Salmon Sashimi" => 1})
 		end
 
-		it 'calculates the total price of an order' do
-			expect(takeaway.receive_order).to eq({"Salmon Sashimi"=>10, "Tuna Sashimi"=>7, "Mackerel Sashimi"=>8})
-			expect(takeaway.receipt).to eq(25)
-		end
-	
-	end
-
-	# context 'The Order:' do
-		
-	# 	it 'sends a text message when the order is placed' do
-			
-	# 	end
-
+	# 	it 'can sum up the total quantity of an order' do
+	# 	expect(takeaway.customer_order(["Salmon Sashimi", "Salmon Sashimi"])).to eq(2)
 	# end
+
+		# it 'calculates the total price of an ordered item' do
+		# 	takeaway.price("Salmon", 2)
+		# 	menu["Salmon"] * 2
+		# 	# expect(takeaway.price).to eq(20)
+		# end
+	end
 
 end
